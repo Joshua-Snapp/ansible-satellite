@@ -1,0 +1,42 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/activation_key_module.html#ansible-collections-theforeman-foreman-activation-key-module
+- name: "Create ORG2 activation key"
+  theforeman.foreman.activation_key:
+    name: "Capsules"
+    organization: "ORG2"
+    lifecycle_environment: "Library"
+    content_view: "Default Organization View"
+    host_collections: []
+    subscriptions:
+      - pool_id: "some_pool_id"
+      - name: "some_subscription_name"
+    content_overrides: []
+    auto_attach: yes
+    validate_certs: no
+  delegate_to: localhost
+
+- name: "Create ORG1 activation key"
+  theforeman.foreman.activation_key:
+    name: "ORG1"
+    organization: "ORG1"
+    lifecycle_environment: "Library"
+    content_view: "Default Organization View"
+    host_collections: []
+    subscriptions: []
+    content_overrides: []
+    auto_attach: yes
+    validate_certs: no
+  delegate_to: localhost
+
+- name: "Create ORG3 activation key"
+  theforeman.foreman.activation_key:
+    name: "ORG3"
+    organization: "ORG3"
+    lifecycle_environment: "Library"
+    content_view: "Default Organization View"
+    host_collections: []
+    subscriptions: []
+    content_overrides: []
+    auto_attach: yes
+    validate_certs: no
+  delegate_to: localhost

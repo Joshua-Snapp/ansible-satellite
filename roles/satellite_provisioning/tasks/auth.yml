@@ -1,0 +1,29 @@
+---
+# We're not set up to use encrypted variables yet. Rather than pester the user for a value for ldap_auth_password every time they run this
+# playbook, we'll use the special tag "never". This will prevent this task from running, unless we explicitly run with "--tags ldap_auth".
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#special-tags-always-and-never
+
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/auth_source_ldap_module.html#ansible-collections-theforeman-foreman-auth-source-ldap-module
+- name: LDAP Authentication with automatic registration
+  theforeman.foreman.auth_source_ldap:
+    name: "some_ldap_name"
+    host: "ldaps.some_ldap_name.ad.ncsu.edu"
+    port: 636
+    onthefly_register: True
+    account: some_ldap_bind_account
+    account_password: "{{ ldap_auth_password }}"
+    base_dn: some_base_dn
+    groups_base: some_group_base
+    tls: yes
+    server_type: active_directory
+    attr_login: sAMAccountName
+    attr_firstname: givenName
+    attr_lastname: sn
+    attr_mail: mail
+    attr_photo: jpegPhoto
+    state: present
+    validate_certs: no
+  delegate_to: localhost
+  tags:
+    - never
+    - ldap_auth

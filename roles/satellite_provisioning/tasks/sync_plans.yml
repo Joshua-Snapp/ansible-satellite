@@ -1,0 +1,16 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/sync_plan_module.html#ansible-collections-theforeman-foreman-sync-plan-module
+- name: "Manage sync plans"
+  theforeman.foreman.sync_plan:
+    name: "{{ item.name }}"
+    organization: "{{ item.organization }}"
+    interval: "{{ item.interval }}"
+    cron_expression: "{{ item.cron_expression | default(omit) }}"
+    enabled: "{{ item.enabled | default(true) }}"
+    sync_date: "{{ item.sync_date }}"
+    products: "{{ item.products }}"
+    state: "{{ item.state | default('present') }}"
+    validate_certs: no
+  delegate_to: localhost
+  loop: "{{ sync_plans }}"
+  ignore_errors: yes

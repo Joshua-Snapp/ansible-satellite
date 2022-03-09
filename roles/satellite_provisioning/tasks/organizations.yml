@@ -1,0 +1,8 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/organization_module.html#ansible-collections-theforeman-foreman-organization-module
+- name: "Create {{ item }} Organization"
+  theforeman.foreman.organization:
+    name: "{{ item }}"
+    state: present
+    validate_certs: no
+  delegate_to: localhost

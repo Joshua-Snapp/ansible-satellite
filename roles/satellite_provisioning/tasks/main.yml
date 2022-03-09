@@ -1,0 +1,25 @@
+---
+- include: auth.yml
+- include: usergroups.yml
+- include_tasks:
+    file: organizations.yml
+  loop: "{{ organizations }}"
+
+# Use loop_control to set loop_var to something different than "item" to allow for nested loops.
+#https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#defining-inner-and-outer-variable-names-with-loop-var
+- include_tasks:
+    file: common_redhat_repos.yml
+    apply:
+      tags: repos
+  tags: repos
+  loop: "{{ organizations }}"
+  loop_control:
+    loop_var: outer_item
+
+- include: org_specific_redhat_repos.yml
+
+- include_tasks:
+    file: sync_plans.yml
+    apply:
+      tags: sync_plans
+  tags: sync_plans

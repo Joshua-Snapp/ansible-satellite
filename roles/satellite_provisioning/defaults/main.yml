@@ -1,0 +1,109 @@
+---
+organizations:
+  - ORG1
+  - ORG2
+  - ORG3
+
+common_redhat_repos_for_every_org:
+  - label: rhel-7-server-ansible-2.9-rpms
+    repositories:
+      - basearch: "x86_64"
+  - label: rhel-7-server-extras-rpms
+    repositories:
+      - basearch: "x86_64"
+  - label: rhel-7-server-kickstart
+    repositories:
+      - releasever: "7.9"
+        basearch: "x86_64"
+  - label: rhel-7-server-optional-rpms
+    repositories:
+      - releasever: "7Server"
+        basearch: "x86_64"
+  - label: rhel-7-server-rpms
+    repositories:
+      - releasever: "7Server"
+        basearch: "x86_64"
+  - label: rhel-8-for-x86_64-appstream-rpms
+    repositories:
+      - releasever: "8"
+  - label: rhel-8-for-x86_64-baseos-kickstart
+    repositories:
+      - releasever: "8.4"
+  - label: rhel-8-for-x86_64-baseos-rpms
+    repositories:
+      - releasever: "8"
+  - label: rhel-7-server-satellite-maintenance-6-rpms
+    repositories:
+      - basearch: "x86_64"
+  - label: rhel-7-server-satellite-tools-6.9-rpms
+    repositories:
+      - basearch: "x86_64"
+  - label: rhel-server-rhscl-7-rpms
+    repositories:
+      - releasever: "7Server"
+        basearch: "x86_64"
+  - label: satellite-tools-6.9-for-rhel-8-x86_64-rpms
+
+redhat_repos_for_org2:
+  - label: rhel-7-server-satellite-capsule-6.9-rpms
+    repositories:
+      - basearch: "x86_64"
+
+sync_plans:
+  - name: "Sync RHEL 7"
+    organization: "ORG1"
+    interval: "daily"
+    sync_date: "2021-09-22 12:00:00 UTC"
+    products:
+      - "Red Hat Enterprise Linux Server"
+  - name: "Sync RHEL 8"
+    organization: "ORG1"
+    interval: "daily"
+    sync_date: "2021-09-21 13:00:00 UTC"
+    products:
+      - "Red Hat Enterprise Linux for x86_64"
+  - name: "Sync Software Collections/Ansible"
+    organization: "ORG1" 
+    interval: "daily"
+    sync_date: "2021-09-22 14:00:00 UTC"
+    products:
+      - "Red Hat Software Collections (for RHEL Server)"
+      - "Red Hat Ansible Engine"
+  - name: "Sync RHEL 7"
+    organization: "ORG2"
+    interval: "daily"
+    sync_date: "2021-09-22 15:00:00 UTC"
+    products:
+      - "Red Hat Enterprise Linux Server"
+  - name: "Sync RHEL 8"
+    organization: "ORG2"
+    interval: "daily"
+    sync_date: "2021-09-21 16:00:00 UTC"
+    products:
+      - "Red Hat Enterprise Linux for x86_64"
+  - name: "Sync Software Collections/Ansible"
+    organization: "ORG2" 
+    interval: "daily"
+    sync_date: "2021-09-22 17:00:00 UTC"
+    products:
+      - "Red Hat Software Collections (for RHEL Server)"
+      - "Red Hat Ansible Engine"
+  - name: "Sync RHEL 7"
+    organization: "ORG3"
+    interval: "daily"
+    sync_date: "2021-09-22 18:00:00 UTC"
+    products:
+      - "Red Hat Enterprise Linux Server"
+  - name: "Sync RHEL 8"
+    organization: "ORG3"
+    interval: "daily"
+    sync_date: "2021-09-21 19:00:00 UTC"
+    products:
+      - "Red Hat Enterprise Linux for x86_64"
+  - name: "Sync Software Collections/Ansible"
+    organization: "ORG3" 
+    interval: "daily"
+    sync_date: "2021-09-22 20:00:00 UTC"
+    products:
+      - "Red Hat Software Collections (for RHEL Server)"
+      - "Red Hat Ansible Engine"

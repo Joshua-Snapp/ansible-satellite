@@ -1,0 +1,19 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/usergroup_module.html#ansible-collections-theforeman-foreman-usergroup-module
+- name: Create a user group for admins
+  theforeman.foreman.usergroup:
+    name: Satellite Administrators
+    admin: yes
+    state: present
+    validate_certs: no
+  delegate_to: localhost
+
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/external_usergroup_module.html#ansible-collections-theforeman-foreman-external-usergroup-module
+- name: Create an external user group
+  theforeman.foreman.external_usergroup:
+    name: some_ad_group
+    auth_source: "some_ldap_name"
+    usergroup: Satellite Administrators
+    state: present
+    validate_certs: no
+  delegate_to: localhost

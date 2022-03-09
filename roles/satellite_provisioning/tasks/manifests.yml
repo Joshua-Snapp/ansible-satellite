@@ -1,0 +1,22 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/redhat_manifest_module.html#ansible-collections-theforeman-foreman-redhat-manifest-module
+- name: Export existing manifest
+  theforeman.foreman.redhat_manifest:
+    username: redhat_subscription_user
+    password: super_secret
+    name: some_hostname
+    content_access_mode: org_environment  # enables Simple Content Access
+    # pool_id: some_pool_id
+    # quantity: 20
+    path: /tmp/manifest.zip
+    validate_certs: no
+  delegate_to: localhost
+
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/subscription_manifest_module.html#ansible-collections-theforeman-foreman-subscription-manifest-module
+- name: "Upload the manifest"
+  theforeman.foreman.subscription_manifest:
+    organization: "ORG2"
+    state: present
+    manifest_path: "/tmp/manifest.zip"
+    validate_certs: no
+  delegate_to: localhost

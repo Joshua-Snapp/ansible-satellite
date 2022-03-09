@@ -1,0 +1,13 @@
+---
+# Looping through hash from default vars. The loop syntax comes from examples at the following link:
+# https://docs.ansible.com/ansible/latest/collections/theforeman/foreman/repository_set_module.html#examples
+- name: "Enable Common Red Hat Repos for {{ outer_item }}"
+  theforeman.foreman.repository_set:
+    organization: "{{ outer_item }}"
+    label: "{{ item.label }}"
+    repositories: "{{ item.repositories | default(omit) }}"
+    all_repositories: "{{ item.repositories is not defined }}"
+    state: "{{ item.state | default('enabled') }}"
+    validate_certs: no
+  delegate_to: localhost
+  loop: "{{ common_redhat_repos_for_every_org }}"
